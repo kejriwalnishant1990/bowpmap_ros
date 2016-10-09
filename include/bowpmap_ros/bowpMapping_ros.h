@@ -59,7 +59,7 @@
   */
 
 #include <iostream>
-#include <opencv2/nonfree/nonfree.hpp>
+
 #include <opencv2/ml/ml.hpp>
 #include <stdio.h>
 #include <fstream>
@@ -102,7 +102,9 @@
 #if(!OPENCV_COMPUTE_TIME)
 #include <ros/time.h>
 #endif
-
+#if(OPENCV_FEATURE_DETECTOR)
+#include <opencv2/nonfree/nonfree.hpp>
+#endif
 
 
 using namespace std;
