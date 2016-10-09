@@ -13,7 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
-find_package(OpenCV REQUIRED)
+find_package(OpenCV 3.1.0 REQUIRED)
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -93,9 +93,11 @@ catkin_package(
 ## Build ##
 ###########
 
+#add_subdirectory(${PROJECT_SOURCE_DIR}/lib/flann-1.8.4-src)
+
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-include_directories("~/flann-1.8.4-src/src/cpp/")
+include_directories(${PROJECT_SOURCE_DIR}/lib/flann-1.8.4-src/src/cpp/)
 include_directories(include)
 include_directories(
   ${catkin_INCLUDE_DIRS}
@@ -113,7 +115,7 @@ add_executable(bowpMapping_ros src/bowpMapping_ros.cpp ${PROJECT_SOURCE_DIR}/inc
 ${PROJECT_SOURCE_DIR}/include/bowpmap_ros/integral.cpp ${PROJECT_SOURCE_DIR}/include/bowpmap_ros/ipoint.cpp ${PROJECT_SOURCE_DIR}/include/bowpmap_ros/surf.cpp
 ${PROJECT_SOURCE_DIR}/include/bowpmap_ros/utils.cpp)
 
-add_executable(sendKinectImage src/sendKinectImage.cpp)
+#add_executable(sendKinectImage src/sendKinectImage.cpp)
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
 # add_dependencies(bowpmap_ros_node bowpmap_ros_generate_messages_cpp)
@@ -162,7 +164,7 @@ add_executable(sendKinectImage src/sendKinectImage.cpp)
 ## Testing ##
 #############
 target_link_libraries(bowpMapping_ros ${OpenCV_LIBRARIES} ${catkin_LIBRARIES} ${PROJECT_SOURCE_DIR}/lib/libgnuplot_ci.a)
-target_link_libraries(sendKinectImage ${OpenCV_LIBRARIES} ${catkin_LIBRARIES})
+#target_link_libraries(sendKinectImage ${OpenCV_LIBRARIES} ${catkin_LIBRARIES})
 
 ## Add gtest based cpp test target and link libraries
 # catkin_add_gtest(${PROJECT_NAME}-test test/test_bowpmap_ros.cpp)
